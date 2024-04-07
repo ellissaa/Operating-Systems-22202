@@ -3,9 +3,9 @@
 
 int IsCorrectName(char* name);
 
-char* ReverseStr(char* name);
+void ReverseStr(char* name, char* reversed_str);
 
-char* ConnectTwoStrs(char* str1, char* str2, char spec_symbol);
+void ConnectTwoStrs(char* str1, char* str2, char spec_symbol, char* connected_str);
 
 char* GetDirName(char* name);
 

@@ -10,7 +10,7 @@ void ReverseDir(char* orig_dir_name, char* dst_dir, __mode_t mode) {
     DIR* dirstream = opendir(orig_dir_name);
     if (dirstream == NULL) {
         printf("Can't open directory witn name %s\n", orig_dir_name);
-        return;
+        return; 
     }
 
     if (orig_dir_name[strlen(orig_dir_name) - 1] == '/') {
@@ -23,8 +23,10 @@ void ReverseDir(char* orig_dir_name, char* dst_dir, __mode_t mode) {
         return;
     }
 
-    char* reverse_dir = ReverseStr(dir_name);
-    char* next_dst_dir = ConnectTwoStrs(dst_dir, reverse_dir, '/'); 
+    char reversed_str[strlen(dir_name)];
+    ReverseStr(dir_name, reversed_str);
+    char next_dst_dir[strlen(dst_dir) + strlen(reversed_str) + 2];
+    ConnectTwoStrs(dst_dir, reversed_str, '/', next_dst_dir); 
 
     mkdir(next_dst_dir, mode);
 
@@ -34,7 +36,8 @@ void ReverseDir(char* orig_dir_name, char* dst_dir, __mode_t mode) {
             continue;
         }
 
-        char* full_cont_name = ConnectTwoStrs(orig_dir_name, content->d_name, '/'); // полное имя файла директории
+        char full_cont_name[strlen(orig_dir_name) + strlen(content->d_name) + 2];
+        ConnectTwoStrs(orig_dir_name, content->d_name, '/', full_cont_name); // полное имя файла директории
         struct stat cont_inform;
         stat(full_cont_name, &cont_inform);
 
@@ -44,10 +47,7 @@ void ReverseDir(char* orig_dir_name, char* dst_dir, __mode_t mode) {
         else if (S_ISREG(cont_inform.st_mode)) {
             ReverseFile(full_cont_name, next_dst_dir, cont_inform.st_mode);
         }
-        free(full_cont_name);
     }
-    free(reverse_dir);
-    free(next_dst_dir);
     closedir(dirstream);
 }
 

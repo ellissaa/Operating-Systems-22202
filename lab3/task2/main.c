@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
     }
 
     else {
-        printf("Unknown command\n");
+        printf("Unknown command.\n");
         return -1;
     }    
 }

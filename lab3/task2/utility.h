@@ -2,19 +2,18 @@
 #define ERROR_PRINTERS_H_INCLUDED
 
 #include <fcntl.h>
-#include <cstdio>
 
 int IsCorrectName(const char* name);
 
-char* ConnectTwoStrs(const char* str1, const char* str2, char symb);
+void ConnectTwoStrs(const char* str1, const char* str2, char spec_symbol, char* connected_str);
 
-char* concat(const char* str1, const char* str2);
+char* GetDirName(char* name);   
 
-char* GetDirName(char* path);
+void Concat(const char* str1, const char* str2, char* res);
 
 void PrintFile(FILE* file);
 
-void StrMode(mode_t mode, char *str);
+void strmode(mode_t mode, char *str);
 
 mode_t ParseMode(const char* str);
 

@@ -7,7 +7,7 @@ void ReverseStr(char* name, char* reversed_str);
 
 void ConnectTwoStrs(char* str1, char* str2, char spec_symbol, char* connected_str);
 
-char* GetDirName(char* name);
+char* GetShortName(char* name);
 
 void ReverseFile(char* src_file, char* dst_dir, __mode_t mode);
 

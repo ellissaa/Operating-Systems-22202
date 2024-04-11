@@ -17,7 +17,7 @@ void ReverseDir(char* orig_dir_name, char* dst_dir, __mode_t mode) {
         orig_dir_name[strlen(orig_dir_name) - 1] = 0;
     }
     
-    char* dir_name = GetDirName(orig_dir_name);
+    char* dir_name = GetShortName(orig_dir_name);
     if (!IsCorrectName(dir_name)) {
         printf("The name of directory isn't correct.\n");
         return;

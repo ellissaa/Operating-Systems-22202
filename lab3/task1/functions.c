@@ -13,10 +13,11 @@ int IsCorrectName(char* name) {
 }
 
 void ReverseStr(char* name, char* reversed_str) {
-    for (size_t i = 0; i < strlen(name); i++) {
-        reversed_str[i] = name[strlen(name) - 1 - i];
+    int lenght = strlen(name);
+    for (size_t i = 0; i < lenght; i++) {
+        reversed_str[i] = name[lenght - 1 - i];
     } 
-    reversed_str[strlen(name)] = 0;
+    reversed_str[lenght] = 0;
 }
 
 void ConnectTwoStrs(char* str1, char* str2, char spec_symbol, char* connected_str) {
@@ -24,7 +25,7 @@ void ConnectTwoStrs(char* str1, char* str2, char spec_symbol, char* connected_st
     snprintf(connected_str, len_str, "%s%c%s", str1, spec_symbol, str2);
 }
 
-char* GetDirName(char* name) {
+char* GetShortName(char* name) {
     char* dir_name = strrchr(name, '/');
     if (dir_name == NULL) {
         return name;
@@ -61,7 +62,7 @@ static void ReverseContent(FILE* src, FILE* dst) {
 }
 
 void ReverseFile(char* src_file, char* dst_dir, __mode_t mode) {
-    char* short_file_name = GetDirName(src_file);
+    char* short_file_name = GetShortName(src_file);
     if (!IsCorrectName(short_file_name)) {
         printf("The name of file isn't correct.\n");
         return;

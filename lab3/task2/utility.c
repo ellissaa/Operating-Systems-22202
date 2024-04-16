@@ -10,15 +10,16 @@ enum {
 };
 
 int IsCorrectName(char* name) { 
-    return !(name == NULL || name == "" || strcmp(name, ".") == 0 || strcmp(name, "..") == 0);
+    return !(name == NULL || name == "" || strcmp(name, "./") == 0 || strcmp(name, "../") == 0);
 }
 
 void ConnectTwoStrs(char* str1, char* str2, char spec_symbol, char* connected_str) {
     size_t len_str = strlen(str1) + strlen(str2) + 2; // 0 and /
     snprintf(connected_str, len_str, "%s%c%s", str1, spec_symbol, str2);
+    printf("%s %s\n", str1, str2);
 }
 
-char* GetDirName(char* name) {
+char* GetShortName(char* name) {
     char* dir_name = strrchr(name, '/');
     if (dir_name == NULL) {
         return name;
@@ -68,6 +69,7 @@ void PrintFile(FILE* file) {
 
         while (bytes_write < bytes_read) {
             bytes_write += fwrite(arr + bytes_write, 1, bytes_read, stdout);
+            printf("\n");
         }
         fflush(stdout);
     }

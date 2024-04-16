@@ -7,7 +7,7 @@ int IsCorrectName(const char* name);
 
 void ConnectTwoStrs(const char* str1, const char* str2, char spec_symbol, char* connected_str);
 
-char* GetDirName(char* name);   
+char* GetShortName(char* name);   
 
 void Concat(const char* str1, const char* str2, char* res);
 

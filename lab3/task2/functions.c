@@ -13,7 +13,7 @@
 #include "utility.h"
 
 enum {
-    SIZE = 100
+    SIZE = 4096 + 255
 };
 
 void n_mkdir(const char* name, mode_t mode) { // создание директории
@@ -41,7 +41,7 @@ void n_ls(const char* name) { // вывести содержимое катал�
 void n_rmdir_rec(const char* name) { // удалить каталог, указанный в аргументе
     DIR* stream = opendir(name);
     if (stream == NULL) {
-        perror("n_rmdir_rec failed.");
+        perror("n_rmdir_rec failed");
         return;
     }
 
@@ -51,11 +51,12 @@ void n_rmdir_rec(const char* name) { // удалить каталог, указ�
             continue;
         }
 
-        char* entry_name;
+        char entry_name[strlen(name) + strlen(entry->d_name) + 2];
         if (name[strlen(name) - 1] == '/') {
             Concat(name, entry->d_name, entry_name);
         } else {
             ConnectTwoStrs(name, entry->d_name, '/', entry_name);
+            break;
         }
 
         struct stat entry_info;
@@ -70,7 +71,7 @@ void n_rmdir_rec(const char* name) { // удалить каталог, указ�
 
     closedir(stream);
     if (rmdir(name) == -1) {
-        perror("n_rmdir_rec failed.");
+        perror("n_rmdir_rec failed");
     }
 } 
 

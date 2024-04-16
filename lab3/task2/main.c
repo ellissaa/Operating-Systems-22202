@@ -15,7 +15,7 @@ static char* GetArgs2(int argc, char** argv) {
 
 int main(int argc, char** argv) {
     char* program_name = argv[0];
-    program_name = GetDirName(program_name);
+    program_name = GetShortName(program_name);
 
     if (argc < 2) { 
         printf("Too few arguments. Expected 2.\n");

@@ -10,7 +10,7 @@
 enum {
     PAGE_SIZE = 4096,
     SIZE = 4096 * 4,
-    BUFF_SIZE = 4096 * 8,
+    BUFF_SIZE = 4096 * 2048 * 200,
     ITER = 20
 };
 
@@ -22,7 +22,7 @@ void StackOverflow() {
 }
 
 void HeapAlloc() {
-    char *pointers[ITER];
+    // char *pointers[ITER];
     // for (int i = 0; i < ITER; i++) {
     //     char *buffer = malloc(BUFF_SIZE);
     //     pointers[i] = buffer;

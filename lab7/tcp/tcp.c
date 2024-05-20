@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 #define LISTEN_BACKLOG 50
 #define ARRAY_SIZE 1024

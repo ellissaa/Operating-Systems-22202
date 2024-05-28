@@ -18,8 +18,12 @@ void read_sequence(int read_fd) {
     while (1) {
         unsigned int number;
         read(read_fd, &number, sizeof(number));
-        if (number != expected_number)
+        if (number != expected_number) {
             printf("Fail\n");
+        }
+        else {
+            printf("OK\n");
+        }
         expected_number++;
         sleep(1);
     }

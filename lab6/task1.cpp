@@ -31,7 +31,7 @@ void read_region(unsigned int *region) {
         expected_number++;
         index++;
         if (index == region_size) index = 0;
-        sleep(5);
+        sleep(1);
     }
 }
 

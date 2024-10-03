@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 
     pid_t pid = getpid();
 
-    int sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+    int sock_fd = socket(AF_INET, SOCK_STREAM, 0); // просто сокет клиента
     if (sock_fd == -1) {
         handle_error("socket");
     }

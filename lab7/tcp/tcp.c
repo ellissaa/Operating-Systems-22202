@@ -14,7 +14,7 @@ static void handle_error(char *msg) {
     exit(EXIT_FAILURE);
 }
 
-static void echo_requests(int comm_sock_fd) {
+static void echo_requests(int comm_sock_fd) { // запустили обмен информацией в отдельном процессе
     char array[ARRAY_SIZE];
 
     while (1) {
@@ -52,21 +52,21 @@ int main(int argc, char **argv) {
         handle_error("bind");
     }
 
-    if (listen(listening_sock_fd, LISTEN_BACKLOG) == -1) {
+    if (listen(listening_sock_fd, LISTEN_BACKLOG) == -1) { // сокет будет принимать запросы
         handle_error("listen");
     }
 
     char hostname[50];
     char service[10];
     getnameinfo((struct sockaddr *) &serv_address, sizeof(serv_address),
-        hostname, sizeof(hostname), service, sizeof(service), 0);
+        hostname, sizeof(hostname), service, sizeof(service), 0); // записали информацию про хостнейм и сервис
     printf("Server %s %s\n", hostname, service);
 
     while (1) {
         struct sockaddr_in comm_sock_addr;
         socklen_t addr_len = sizeof(comm_sock_addr);
         int comm_sock_fd = accept(listening_sock_fd,
-            (struct sockaddr *) &comm_sock_addr, &addr_len);
+            (struct sockaddr *) &comm_sock_addr, &addr_len); // принимаем соединение от клиентов через сокет, получили новый сокет, через который будем обмениваться данными
         if (comm_sock_fd == -1) {
             handle_error("accept");
         }
